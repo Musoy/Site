@@ -1,0 +1,627 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+    <title>Сайты под ключ | Быстро для бизнеса</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: #f8f9fc;
+            color: #1a2a3a;
+            line-height: 1.5;
+        }
+
+        /* ШАПКА */
+        .header {
+            background: linear-gradient(135deg, #0f2b3a 0%, #1b4a6e 50%, #0f2b3a 100%);
+            color: white;
+            padding: 32px 32px;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: 0 8px 30px rgba(0,0,0,0.2);
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+        }
+        .header-content {
+            max-width: 1300px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+        .header-text h1 {
+            font-size: 32px;
+            margin-bottom: 8px;
+            letter-spacing: -0.5px;
+            background: linear-gradient(135deg, #fff, #ffd966);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+        .header-text p {
+            font-size: 15px;
+            opacity: 0.85;
+        }
+        .social-links {
+            display: flex;
+            gap: 15px;
+            align-items: center;
+        }
+        .social-icon {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: rgba(255,255,255,0.12);
+            backdrop-filter: blur(4px);
+            padding: 8px 18px;
+            border-radius: 50px;
+            text-decoration: none;
+            color: white;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            border: 1px solid rgba(255,255,255,0.2);
+        }
+        .social-icon:hover {
+            background: rgba(255,255,255,0.25);
+            transform: translateY(-2px);
+            border-color: #ffaa66;
+        }
+        .social-icon svg {
+            width: 20px;
+            height: 20px;
+            fill: white;
+        }
+
+        @media (max-width: 700px) {
+            .header-content {
+                flex-direction: column;
+                text-align: center;
+            }
+            .header-text h1 {
+                font-size: 26px;
+            }
+        }
+
+        .container {
+            max-width: 1300px;
+            margin: 0 auto;
+            padding: 40px 20px;
+        }
+
+        /* СЕТКА КАРТИНОК (образцы) */
+        .samples-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 32px;
+            margin-top: 20px;
+        }
+
+        .sample-card {
+            background: white;
+            border-radius: 28px;
+            overflow: hidden;
+            box-shadow: 0 15px 35px -10px rgba(0,0,0,0.1);
+            transition: all 0.3s ease;
+        }
+        .sample-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 25px 40px -12px rgba(0,0,0,0.2);
+        }
+        .sample-preview {
+            width: 100%;
+            height: 220px;
+            object-fit: cover;
+            background: #eef2f7;
+            display: block;
+            cursor: pointer;
+            transition: transform 0.3s;
+        }
+        .sample-preview:hover {
+            transform: scale(1.02);
+        }
+        .sample-info {
+            padding: 20px;
+        }
+        .sample-info h3 {
+            font-size: 22px;
+            margin-bottom: 8px;
+            color: #0a2b3e;
+        }
+        .sample-info p {
+            color: #4a627a;
+            margin-bottom: 16px;
+            font-size: 14px;
+        }
+        .badge {
+            display: inline-block;
+            background: #eef2ff;
+            padding: 4px 12px;
+            border-radius: 30px;
+            font-size: 12px;
+            font-weight: 600;
+            color: #1e4a6e;
+            margin-right: 8px;
+            margin-bottom: 12px;
+        }
+        .btn-demo {
+            display: inline-block;
+            background: linear-gradient(135deg, #0a2b3e, #1e4a6e);
+            color: white;
+            padding: 8px 22px;
+            border-radius: 40px;
+            text-decoration: none;
+            font-size: 14px;
+            font-weight: 600;
+            margin-top: 8px;
+            transition: all 0.2s;
+            border: none;
+            cursor: pointer;
+        }
+        .btn-demo:hover {
+            background: linear-gradient(135deg, #1e4a6e, #2a6a8e);
+            transform: scale(1.02);
+        }
+
+        /* БЛОК КАК РАБОТАЕТ */
+        .howto {
+            background: linear-gradient(135deg, #eef2ff 0%, #ffffff 100%);
+            border-radius: 48px;
+            padding: 50px 40px;
+            margin: 60px 0;
+            text-align: center;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+        }
+        .howto h2 {
+            font-size: 36px;
+            margin-bottom: 20px;
+            color: #0a2b3e;
+        }
+        .steps {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 30px;
+            margin-top: 40px;
+        }
+        .step {
+            flex: 1;
+            min-width: 200px;
+            background: white;
+            padding: 28px 20px;
+            border-radius: 32px;
+            transition: all 0.3s ease;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+            border: 1px solid rgba(0,0,0,0.05);
+        }
+        .step:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 30px -10px rgba(0,0,0,0.1);
+            border-color: #ffaa66;
+        }
+        .step-icon {
+            font-size: 48px;
+            margin-bottom: 16px;
+        }
+        .step-number {
+            font-size: 28px;
+            font-weight: 800;
+            color: #ff8c42;
+            margin-bottom: 12px;
+        }
+        .step h3 {
+            font-size: 20px;
+            margin-bottom: 8px;
+            color: #0a2b3e;
+        }
+        .step p {
+            color: #6c7a8e;
+            font-size: 14px;
+        }
+
+        /* ФОРМА */
+        .order-form {
+            background: white;
+            border-radius: 40px;
+            padding: 48px 40px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.08);
+            margin: 50px 0;
+            border: 1px solid #eef2f7;
+        }
+        .form-group {
+            margin-bottom: 20px;
+        }
+        .form-group input, .form-group select, .form-group textarea {
+            width: 100%;
+            padding: 16px 20px;
+            border: 1px solid #e2e8f0;
+            border-radius: 60px;
+            font-size: 16px;
+            font-family: inherit;
+            transition: 0.2s;
+        }
+        .form-group input:focus, .form-group select:focus, .form-group textarea:focus {
+            outline: none;
+            border-color: #ff8c42;
+            box-shadow: 0 0 0 3px rgba(255,140,66,0.1);
+        }
+        .form-group textarea {
+            border-radius: 28px;
+            resize: vertical;
+        }
+        .btn-submit {
+            background: linear-gradient(135deg, #ff8c42, #ff6a2e);
+            color: white;
+            border: none;
+            padding: 16px 32px;
+            border-radius: 60px;
+            font-size: 18px;
+            font-weight: 700;
+            cursor: pointer;
+            width: 100%;
+            transition: 0.2s;
+        }
+        .btn-submit:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 25px rgba(255,108,46,0.3);
+        }
+
+        /* ФУТЕР */
+        .footer {
+            background: #0a1a2a;
+            color: white;
+            text-align: center;
+            padding: 40px 30px;
+            margin-top: 40px;
+        }
+        .footer-social {
+            display: flex;
+            justify-content: center;
+            gap: 24px;
+            margin-bottom: 20px;
+        }
+        .footer-social a svg {
+            width: 30px;
+            height: 30px;
+            fill: white;
+            transition: 0.2s;
+        }
+        .footer-social a:hover svg {
+            transform: scale(1.1);
+            fill: #ffaa66;
+        }
+
+        /* LIGHTBOX С ПРОЛИСТЫВАНИЕМ */
+        .lightbox {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.95);
+            z-index: 2000;
+            justify-content: center;
+            align-items: center;
+        }
+        .lightbox.active {
+            display: flex;
+        }
+        .lightbox-img {
+            max-width: 85%;
+            max-height: 85%;
+            object-fit: contain;
+            border-radius: 16px;
+            box-shadow: 0 0 50px rgba(0,0,0,0.5);
+        }
+        .lightbox-close {
+            position: absolute;
+            top: 25px;
+            right: 35px;
+            font-size: 44px;
+            color: white;
+            cursor: pointer;
+            background: rgba(0,0,0,0.6);
+            width: 55px;
+            height: 55px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: 0.2s;
+            z-index: 2001;
+        }
+        .lightbox-close:hover {
+            background: #ff5e00;
+            transform: scale(1.05);
+        }
+        .lightbox-prev, .lightbox-next {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background: rgba(0,0,0,0.6);
+            color: white;
+            font-size: 40px;
+            font-weight: bold;
+            padding: 15px 22px;
+            cursor: pointer;
+            border-radius: 60px;
+            transition: 0.2s;
+            user-select: none;
+            z-index: 2001;
+        }
+        .lightbox-prev {
+            left: 25px;
+        }
+        .lightbox-next {
+            right: 25px;
+        }
+        .lightbox-prev:hover, .lightbox-next:hover {
+            background: #ff8c42;
+            transform: translateY(-50%) scale(1.05);
+        }
+        @media (max-width: 700px) {
+            .lightbox-prev, .lightbox-next {
+                padding: 8px 15px;
+                font-size: 28px;
+            }
+            .lightbox-img {
+                max-width: 95%;
+            }
+            .steps {
+                gap: 16px;
+            }
+            .howto {
+                padding: 30px 20px;
+            }
+            .samples-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<div class="header">
+    <div class="header-content">
+        <div class="header-text">
+            <h1>✨ САЙТЫ ПОД КЛЮЧ ✨</h1>
+            <p>Выбери готовый образец — сделаю под твой бизнес за 1–2 часа</p>
+        </div>
+        <div class="social-links">
+            <a href="https://wa.me/79991234567" class="social-icon" target="_blank">
+                <svg viewBox="0 0 24 24"><path d="M12.031 2.016c4.969 0 9 4.031 9 9s-4.031 9-9 9c-1.5 0-2.953-0.375-4.266-1.078l-4.594 1.125 1.125-4.5c-0.75-1.313-1.172-2.813-1.172-4.406 0-4.969 4.031-9 9-9zM12.094 16.547c2.016 0 3.656-1.641 3.656-3.656 0-0.984-0.375-1.875-1.078-2.531-0.141-0.141-0.328-0.234-0.516-0.281-0.422-0.094-0.891 0.047-1.219 0.375-0.328 0.328-0.469 0.797-0.375 1.219 0.047 0.188 0.141 0.375 0.281 0.516 0.422 0.422 0.656 0.984 0.656 1.547 0 1.219-0.984 2.203-2.203 2.203-0.563 0-1.125-0.234-1.547-0.656-0.141-0.141-0.234-0.328-0.281-0.516-0.094-0.422-0.047-0.891 0.375-1.219 0.328-0.328 0.797-0.469 1.219-0.375 0.188 0.047 0.375 0.141 0.516 0.281 0.656 0.656 1.547 0.656 2.203 0z"/></svg>
+                WhatsApp
+            </a>
+            <a href="https://t.me/ваш_логин" class="social-icon" target="_blank">
+                <svg viewBox="0 0 24 24"><path d="M12.031 2.016c4.969 0 9 4.031 9 9s-4.031 9-9 9c-1.5 0-2.953-0.375-4.266-1.078l-4.594 1.125 1.125-4.5c-0.75-1.313-1.172-2.813-1.172-4.406 0-4.969 4.031-9 9-9zM9.516 7.547c-0.469 0-0.891 0.234-1.172 0.609-0.234 0.281-0.469 0.656-0.469 1.078 0 0.422 0.188 0.844 0.375 1.219 0.328 0.656 0.75 1.266 1.219 1.828 0.656 0.75 1.453 1.359 2.344 1.781 0.469 0.234 0.938 0.422 1.453 0.516 0.281 0.047 0.563 0.094 0.844 0.094 0.281 0 0.563-0.047 0.844-0.094 0.469-0.094 0.938-0.281 1.313-0.563 0.328-0.281 0.563-0.656 0.656-1.078 0.094-0.422 0.094-0.844 0-1.266-0.094-0.281-0.234-0.563-0.469-0.75-0.234-0.188-0.516-0.328-0.844-0.422-0.328-0.094-0.656-0.141-0.984-0.234-0.328-0.094-0.656-0.188-0.984-0.328-0.328-0.141-0.609-0.328-0.844-0.563-0.188-0.234-0.281-0.516-0.281-0.844 0-0.422 0.188-0.797 0.516-1.078 0.281-0.234 0.656-0.375 1.031-0.375 0.188 0 0.375 0.047 0.563 0.094 0.188 0.047 0.375 0.141 0.563 0.234 0.188 0.094 0.375 0.188 0.563 0.281 0.188 0.094 0.375 0.141 0.563 0.141 0.188 0 0.375-0.047 0.563-0.141 0.188-0.094 0.375-0.188 0.563-0.281 0.188-0.094 0.375-0.188 0.563-0.234 0.188-0.047 0.375-0.094 0.563-0.094 0.375 0 0.75 0.141 1.031 0.375 0.328 0.281 0.516 0.656 0.516 1.078 0 0.328-0.094 0.609-0.281 0.844-0.234 0.234-0.516 0.422-0.844 0.563-0.328 0.141-0.656 0.234-0.984 0.328-0.328 0.094-0.656 0.188-0.984 0.234-0.328 0.094-0.656 0.188-0.984 0.328-0.328 0.141-0.609 0.328-0.844 0.563-0.188 0.234-0.281 0.516-0.281 0.844 0 0.328 0.094 0.609 0.281 0.844 0.234 0.234 0.516 0.422 0.844 0.563 0.328 0.141 0.656 0.234 0.984 0.328 0.328 0.094 0.656 0.188 0.984 0.234 0.328 0.094 0.656 0.188 0.984 0.328 0.328 0.141 0.609 0.328 0.844 0.563 0.188 0.234 0.281 0.516 0.281 0.844 0 0.422-0.188 0.797-0.516 1.078-0.281 0.234-0.656 0.375-1.031 0.375-0.188 0-0.375-0.047-0.563-0.094-0.188-0.047-0.375-0.141-0.563-0.234-0.188-0.094-0.375-0.188-0.563-0.281-0.188-0.094-0.375-0.141-0.563-0.141-0.188 0-0.375 0.047-0.563 0.141-0.188 0.094-0.375 0.188-0.563 0.281-0.188 0.094-0.375 0.188-0.563 0.234-0.188 0.047-0.375 0.094-0.563 0.094-0.375 0-0.75-0.141-1.031-0.375-0.328-0.281-0.516-0.656-0.516-1.078 0-0.328 0.094-0.609 0.281-0.844 0.234-0.234 0.516-0.422 0.844-0.563 0.328-0.141 0.656-0.234 0.984-0.328 0.328-0.094 0.656-0.188 0.984-0.234 0.328-0.094 0.656-0.188 0.984-0.328 0.328-0.141 0.609-0.328 0.844-0.563 0.188-0.234 0.281-0.516 0.281-0.844z"/></svg>
+                Telegram
+            </a>
+        </div>
+    </div>
+</div>
+
+<div class="container">
+    <!-- СЕТКА С КАРТИНКАМИ (ОБРАЗЦЫ) -->
+    <div class="samples-grid" id="samplesGrid"></div>
+
+    <!-- БЛОК КАК РАБОТАЕТ -->
+    <div class="howto">
+        <h2>⚡ Как мы создаём ваш сайт</h2>
+        <div class="steps">
+            <div class="step">
+                <div class="step-icon">🎯</div>
+                <div class="step-number">1</div>
+                <h3>Выбор образца</h3>
+                <p>Выбираете готовый шаблон или описываете свою идею</p>
+            </div>
+            <div class="step">
+                <div class="step-icon">📝</div>
+                <div class="step-number">2</div>
+                <h3>Заявка на заказ</h3>
+                <p>Оставляете контакты — я связываюсь за 5 минут</p>
+            </div>
+            <div class="step">
+                <div class="step-icon">⚙️</div>
+                <div class="step-number">3</div>
+                <h3>Быстрая сборка</h3>
+                <p>Адаптирую дизайн, добавляю ваш текст, лого, фото</p>
+            </div>
+            <div class="step">
+                <div class="step-icon">🚀</div>
+                <div class="step-number">4</div>
+                <h3>Готово!</h3>
+                <p>Получаете сайт, который работает на телефонах и ПК</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- ФОРМА ЗАКАЗА -->
+    <div class="order-form">
+        <h2 style="margin-bottom: 24px; text-align: center;">📩 Заказать сайт</h2>
+        <form id="callbackForm">
+            <div class="form-group">
+                <input type="text" id="name" placeholder="Ваше имя" required>
+            </div>
+            <div class="form-group">
+                <input type="tel" id="phone" placeholder="Телефон / Telegram" required>
+            </div>
+            <div class="form-group">
+                <select id="sampleSelect">
+                    <option value="Строитель / ремонт">🔨 Строитель / ремонт</option>
+                    <option value="Маникюр / брови">💅 Маникюр / брови</option>
+                    <option value="Репетитор">📚 Репетитор</option>
+                    <option value="Фотограф">📸 Фотограф</option>
+                    <option value="Кафе / доставка">🍔 Кафе / доставка</option>
+                    <option value="Калькулятор услуг">🧮 Калькулятор услуг</option>
+                    <option value="Другое">✨ Свой вариант</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <textarea rows="3" id="comment" placeholder="Что нужно? Пожелания, цвет, фишки..."></textarea>
+            </div>
+            <button type="submit" class="btn-submit">🚀 Отправить заявку</button>
+        </form>
+        <p style="font-size: 13px; margin-top: 20px; text-align: center;">Отвечаю в течение 30 минут. Сделаем сайт, который работает</p>
+    </div>
+</div>
+
+<div class="footer">
+    <div class="footer-social">
+        <a href="https://wa.me/79991234567" target="_blank"><svg viewBox="0 0 24 24"><path d="M12.031 2.016c4.969 0 9 4.031 9 9s-4.031 9-9 9c-1.5 0-2.953-0.375-4.266-1.078l-4.594 1.125 1.125-4.5c-0.75-1.313-1.172-2.813-1.172-4.406 0-4.969 4.031-9 9-9zM12.094 16.547c2.016 0 3.656-1.641 3.656-3.656 0-0.984-0.375-1.875-1.078-2.531-0.141-0.141-0.328-0.234-0.516-0.281-0.422-0.094-0.891 0.047-1.219 0.375-0.328 0.328-0.469 0.797-0.375 1.219 0.047 0.188 0.141 0.375 0.281 0.516 0.422 0.422 0.656 0.984 0.656 1.547 0 1.219-0.984 2.203-2.203 2.203-0.563 0-1.125-0.234-1.547-0.656-0.141-0.141-0.234-0.328-0.281-0.516-0.094-0.422-0.047-0.891 0.375-1.219 0.328-0.328 0.797-0.469 1.219-0.375 0.188 0.047 0.375 0.141 0.516 0.281 0.656 0.656 1.547 0.656 2.203 0z"/></svg></a>
+        <a href="https://t.me/ваш_логин" target="_blank"><svg viewBox="0 0 24 24"><path d="M12.031 2.016c4.969 0 9 4.031 9 9s-4.031 9-9 9c-1.5 0-2.953-0.375-4.266-1.078l-4.594 1.125 1.125-4.5c-0.75-1.313-1.172-2.813-1.172-4.406 0-4.969 4.031-9 9-9zM9.516 7.547c-0.469 0-0.891 0.234-1.172 0.609-0.234 0.281-0.469 0.656-0.469 1.078 0 0.422 0.188 0.844 0.375 1.219 0.328 0.656 0.75 1.266 1.219 1.828 0.656 0.75 1.453 1.359 2.344 1.781 0.469 0.234 0.938 0.422 1.453 0.516 0.281 0.047 0.563 0.094 0.844 0.094 0.281 0 0.563-0.047 0.844-0.094 0.469-0.094 0.938-0.281 1.313-0.563 0.328-0.281 0.563-0.656 0.656-1.078 0.094-0.422 0.094-0.844 0-1.266-0.094-0.281-0.234-0.563-0.469-0.75-0.234-0.188-0.516-0.328-0.844-0.422-0.328-0.094-0.656-0.141-0.984-0.234-0.328-0.094-0.656-0.188-0.984-0.328-0.328-0.141-0.609-0.328-0.844-0.563-0.188-0.234-0.281-0.516-0.281-0.844 0-0.422 0.188-0.797 0.516-1.078 0.281-0.234 0.656-0.375 1.031-0.375 0.188 0 0.375 0.047 0.563 0.094 0.188 0.047 0.375 0.141 0.563 0.234 0.188 0.094 0.375 0.188 0.563 0.281 0.188 0.094 0.375 0.141 0.563 0.141 0.188 0 0.375-0.047 0.563-0.141 0.188-0.094 0.375-0.188 0.563-0.281 0.188-0.094 0.375-0.188 0.563-0.234 0.188-0.047 0.375-0.094 0.563-0.094 0.375 0 0.75 0.141 1.031 0.375 0.328 0.281 0.516 0.656 0.516 1.078 0 0.328-0.094 0.609-0.281 0.844-0.234 0.234-0.516 0.422-0.844 0.563-0.328 0.141-0.656 0.234-0.984 0.328-0.328 0.094-0.656 0.188-0.984 0.234-0.328 0.094-0.656 0.188-0.984 0.328-0.328 0.141-0.609 0.328-0.844 0.563-0.188 0.234-0.281 0.516-0.281 0.844 0 0.328 0.094 0.609 0.281 0.844 0.234 0.234 0.516 0.422 0.844 0.563 0.328 0.141 0.656 0.234 0.984 0.328 0.328 0.094 0.656 0.188 0.984 0.234 0.328 0.094 0.656 0.188 0.984 0.328 0.328 0.141 0.609 0.328 0.844 0.563 0.188 0.234 0.281 0.516 0.281 0.844 0 0.422-0.188 0.797-0.516 1.078-0.281 0.234-0.656 0.375-1.031 0.375-0.188 0-0.375-0.047-0.563-0.094-0.188-0.047-0.375-0.141-0.563-0.234-0.188-0.094-0.375-0.188-0.563-0.281-0.188-0.094-0.375-0.141-0.563-0.141-0.188 0-0.375 0.047-0.563 0.141-0.188 0.094-0.375 0.188-0.563 0.281-0.188 0.094-0.375 0.188-0.563 0.234-0.188 0.047-0.375 0.094-0.563 0.094-0.375 0-0.75-0.141-1.031-0.375-0.328-0.281-0.516-0.656-0.516-1.078 0-0.328 0.094-0.609 0.281-0.844 0.234-0.234 0.516-0.422 0.844-0.563 0.328-0.141 0.656-0.234 0.984-0.328 0.328-0.094 0.656-0.188 0.984-0.234 0.328-0.094 0.656-0.188 0.984-0.328 0.328-0.141 0.609-0.328 0.844-0.563 0.188-0.234 0.281-0.516 0.281-0.844z"/></svg></a>
+    </div>
+    <p>⚡ Генерация сайтов для бизнеса | Быстро, под ключ, без лишних сложностей</p>
+    <p style="margin-top: 8px; font-size: 13px;">Связь в Telegram / WhatsApp — отвечаю сразу</p>
+</div>
+
+<!-- LIGHTBOX -->
+<div id="lightbox" class="lightbox">
+    <span class="lightbox-close">&times;</span>
+    <button class="lightbox-prev">❮</button>
+    <button class="lightbox-next">❯</button>
+    <img class="lightbox-img" id="lightboxImg" src="" alt="Увеличенное фото">
+</div>
+
+<script>
+    // СПИСОК ОБРАЗЦОВ С ТВОИМИ ЛОКАЛЬНЫМИ КАРТИНКАМИ
+    const samples = [
+        {
+            title: "🔨 Строитель / ремонт",
+            desc: "Калькулятор стоимости, галерея работ, форма заявки. Идеально для бригад и мастеров.",
+            tags: ["Калькулятор", "Адаптив", "Галерея"],
+            demoLink: "#",
+            img: "Строитель.jpeg"
+        },
+        {
+            title: "💅 Маникюр / брови",
+            desc: "Портфолио, прайс-лист, онлайн-запись. Для мастеров и салонов красоты.",
+            tags: ["Запись онлайн", "Прайс", "Портфолио"],
+            demoLink: "#",
+            img: "Маникюр, брови.jpeg"
+        },
+        {
+            title: "📚 Репетитор",
+            desc: "Калькулятор занятий, отзывы учеников, форма обратной связи.",
+            tags: ["Калькулятор", "Отзывы", "Форма"],
+            demoLink: "#",
+            img: "репетитор с учеником картинка.jpeg"
+        },
+        {
+            title: "📸 Фотограф",
+            desc: "Галерея с увеличением, прайс-пакеты, бронирование дат.",
+            tags: ["Галерея", "Увеличение фото", "Бронирование"],
+            demoLink: "#",
+            img: "Фотограф.jpeg"
+        },
+        {
+            title: "🍔 Кафе / доставка",
+            desc: "Меню с ценами, корзина, форма заказа. Для ресторанов и доставки.",
+            tags: ["Меню", "Корзина", "Заказ онлайн"],
+            demoLink: "#",
+            img: "Кафе.jpeg"
+        },
+        {
+            title: "🧮 Калькулятор услуг",
+            desc: "Универсальный калькулятор для любой сферы (клининг, перевозки, ремонт).",
+            tags: ["Калькулятор", "Форма заявки", "Быстрый расчёт"],
+            demoLink: "#",
+            img: "Калькулятор.jpeg"
+        }
+    ];
+
+    // ОТРИСОВКА КАРТОЧЕК
+    function renderSamples() {
+        const grid = document.getElementById('samplesGrid');
+        if (!grid) return;
+        grid.innerHTML = samples.map((sample, idx) => `
+            <div class="sample-card">
+                <img class="sample-preview" src="${sample.img}" alt="${sample.title}" loading="lazy" onclick="openLightbox(${idx})">
+                <div class="sample-info">
+                    <h3>${sample.title}</h3>
+                    <p>${sample.desc}</p>
+                    <div>
+                        ${sample.tags.map(tag => `<span class="badge">${tag}</span>`).join('')}
+                    </div>
+                    <a href="${sample.demoLink}" class="btn-demo" target="_blank" onclick="if(this.href=='#'){alert('🔧 Пример будет доступен после загрузки. Напишите мне, и я сразу вышлю ссылку'); return false;}">Посмотреть пример →</a>
+                </div>
+            </div>
+        `).join('');
+    }
+    renderSamples();
+
+    // LIGHTBOX С ПРОЛИСТЫВАНИЕМ
+    let currentIndex = 0;
+    const lightbox = document.getElementById('lightbox');
+    const lightboxImg = document.getElementById('lightboxImg');
+    const closeBtn = document.querySelector('.lightbox-close');
+    const prevBtn = document.querySelector('.lightbox-prev');
+    const nextBtn = document.querySelector('.lightbox-next');
+
+    function openLightbox(index) {
+        currentIndex = index;
+        updateLightboxImage();
+        lightbox.classList.add('active');
+        document.body.style.overflow = 'hidden';
+    }
+
+    function updateLightboxImage() {
+        lightboxImg.src = samples[currentIndex].img;
+    }
+
+    function closeLightbox() {
+        lightbox.classList.remove('active');
+        document.body.style.overflow = '';
+        lightboxImg.src = '';
+    }
+
+    function prevImage() {
+        currentIndex = (currentIndex - 1 + samples.length) % samples.length;
+        updateLightboxImage();
+    }
+
+    function nextImage() {
+        currentIndex = (currentIndex + 1) % samples.length;
+        updateLightboxImage();
+    }
+
+    closeBtn.addEventListener('click', closeLightbox);
+    prevBtn.addEventListener('click', prevImage);
+    nextBtn.addEventListener('click', nextImage);
+    lightbox.addEventListener('click', (e) => {
+        if (e.target === lightbox) closeLightbox();
+    });
+    document.addEventListener('keydown', (e) => {
+        if (!lightbox.classList.contains('active')) return;
+        if (e.key === 'Escape') closeLightbox();
+        if (e.key === 'ArrowLeft') prevImage();
+        if (e.key === 'ArrowRight') nextImage();
+    });
+
+    // ФОРМА
+    const form = document.getElementById('callbackForm');
+    if (form) {
+        form.addEventListener('submit', function(e) {
+            e.preventDefault();
+            const name = document.getElementById('name').value.trim();
+            const phone = document.getElementById('phone').value.trim();
+            const sample = document.getElementById('sampleSelect').value;
+            if (!name || !phone) {
+                alert('Пожалуйста, укажите имя и телефон/Telegram для связи');
+                return;
+            }
+            alert(`✅ Спасибо, ${name}! Ваша заявка на "${sample}" принята. Я свяжусь с вами в ближайшие 30 минут.`);
+            form.reset();
+        });
+    }
+</script>
+</body>
+</html>
